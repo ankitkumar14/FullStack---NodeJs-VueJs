@@ -8,6 +8,11 @@ npm install
 ### Compiles and hot-reloads for development
 ```
 npm run serve
+
+also run the backend server by - 
+
+cd backend
+node index.js
 ```
 
 ### Compiles and minifies for production
