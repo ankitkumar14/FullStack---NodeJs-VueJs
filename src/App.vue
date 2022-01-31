@@ -3,6 +3,14 @@
 
     <b-button v-b-modal.modal-prevent-closing>Add Data</b-button>
 
+    <b-modal id="modal" ref="my-modal" hide-footer title="Using Component Methods">
+      <div class="d-block text-center">
+        <h3>Are you sure ?</h3>
+      </div>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">No</b-button>
+      <b-button class="mt-2" variant="outline-warning" block @click="del">Yes</b-button>
+    </b-modal>
+
   <b-modal
       id="modal-prevent-closing"
       ref="modal"
@@ -127,6 +135,12 @@ export default {
     };
   },
   methods:{
+    showModal() {
+        this.$refs['my-modal'].show()
+      },
+      hideModal() {
+        this.$refs['my-modal'].hide()
+      },
       handleOk(bvModalEvt) {
         bvModalEvt.preventDefault()
         this.handleSubmit()
@@ -170,9 +184,12 @@ export default {
         this.fun();
       })
     },
-    del(id){
+    del(){
+      const id=this.$store.state.delid;
       axios.delete('http://localhost:3000/delete/'+id).then((res)=>{
         console.log(res.data)
+        this.$store.state.delid=null;
+        this.$refs['my-modal'].hide()
         this.fun();
       })
     },

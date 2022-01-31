@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
         },
         editcon:false,
         idedit:null,
-        row:[]
+        row:[],
+        delid:null
     }
 })
